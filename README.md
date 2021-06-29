@@ -162,11 +162,11 @@ Enviarlo y esperar la autorización del enunciado por parte de los docentes. Una
 
 |Requerimiento|cant. mín.<br>1 o 2 integ|cant. máx.<br>3 o 4 integ|Detalle/Listado de casos incluidos|
 |:-|-:|-:|:-|
-|ABMC simple|1 x integ|1 x integ| ABMC empleados, ABMC categorias|
+|ABMC simple|1 x integ|1 x integ| ABMC proveedores, ABMC categorias|
 |ABMC dependiente|1|2|ABMC productos|
-|CU NO-ABMC|1|2|gestion de pedidos|
-|Listado simple|1|3(*)|Listado de productos en una categoria?|
-|Listado complejo|0|1(*)|productos con bajo stock|
+|CU NO-ABMC|1|2|gestion de pedidos (compra)|
+|Listado simple|1|3(*)|productos con bajo stock|
+|Listado complejo|0|1(*)|detalle de todos los pedidos hechos a un proveedor|
 
 (\*) los grupos de 3 y 4 integrantes deben elegir entre 1 listado complejo o 3 simlples para regularizar.
 
@@ -175,9 +175,9 @@ Enviarlo y esperar la autorización del enunciado por parte de los docentes. Una
 
 |Requerimiento|cant. mín.<br>1 o 2 integ|cant. máx.<br>3 o 4 integ|Detalle/Listado de casos incluidos|
 |:-|-:|-:|:-|
-|ABMC|todos|todos|ABMC clientes, ABMC proveedores|
-|CU "Complejo"(nivel resumen)|1|2| ??? |
-|Listado complejo|1|2|pedidos por rango de fecha|
+|ABMC|todos|todos|ABMC clientes|
+|CU "Complejo"(nivel resumen)|1|2| gestion de pedidos (venta)|
+|Listado complejo|1|2| ??? |
 |Nivel de acceso|2|2|administrador, empleado|
 |Manejo de errores|obligatorio|obligatorio|no requiere detalle|
 |requerimiento extra obligatorio (**)|0|1|manejo de archivos, envio de emails|
