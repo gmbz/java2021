@@ -1,23 +1,27 @@
 package models;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
 
 public class Pedido {
 	private int nro_pedido;
 	private LocalDate fecha;
-	private LinkedList<PedidoDetalle> detalle;
-	
-	public LinkedList<PedidoDetalle> getDetalle() {
+	private PedidoDetalle detalle;
+	private Cliente cliente;
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public PedidoDetalle getDetalle() {
 		return detalle;
 	}
 
-	public Pedido() {
-		this.detalle = new LinkedList<>();
-	}
-	
-	public void addDetalle(PedidoDetalle detalle) {
-		this.detalle.add(detalle);		
+	public void setDetalle(PedidoDetalle detalle) {
+		this.detalle = detalle;
 	}
 
 	public int getNro_pedido() {
@@ -38,7 +42,7 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [nro_pedido=" + nro_pedido + ", fecha=" + fecha + ", detalle=" + detalle + "]";
+		return "Pedido [nro_pedido=" + nro_pedido + ", fecha=" + fecha + "]";
 	}
 
 }

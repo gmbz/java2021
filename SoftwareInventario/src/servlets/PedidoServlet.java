@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import database.PedidoDb;
-import database.ProductoDb;
+import controller.ClienteController;
+import controller.PedidoController;
+import controller.ProductoController;
+import models.Cliente;
+import models.ItemPedido;
 import models.Pedido;
+import models.PedidoDetalle;
 import models.Producto;
 
 /**
@@ -37,29 +41,30 @@ public class PedidoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String opcion = request.getParameter("opcion");
+		PedidoController ped_controller = new PedidoController();
+		ProductoController prod_controller = new ProductoController();
+		
 		if (opcion.equals("listar")) {
-			PedidoDb db_ped = new PedidoDb();
 			LinkedList<Pedido> lista = new LinkedList<>();
-			lista = db_ped.getAll();
+			
+			lista = ped_controller.listarPedidos();
+			
 			request.setAttribute("lista", lista);
 			RequestDispatcher rd = request.getRequestDispatcher("show_pedidos.jsp");
 			rd.forward(request, response);
-		} else if (opcion.equals("borrar")) {
-			ProductoDb db_prod = new ProductoDb();
-			Producto prod = new Producto();
-			prod.setId(Integer.parseInt(request.getParameter("idProd")));
-			db_prod.delete(prod);
-			RequestDispatcher rd = request.getRequestDispatcher("productoServlet?opcion=listar");
+			
+		} else if (opcion.equals("nuevo")) {
+			PedidoDetalle pd = new PedidoDetalle();
+			LinkedList<Producto> lista_productos = new LinkedList<>();
+			
+			lista_productos = prod_controller.listaProductos();
+			ped_controller.crearDetalle(pd);
+			
+			request.setAttribute("lista", lista_productos);
+			request.setAttribute("pedido_detalle", pd);
+			RequestDispatcher rd = request.getRequestDispatcher("new_pedido.jsp");
 			rd.forward(request, response);
-		} else if (opcion.equals("buscar")) {
-			Producto prod = new Producto();
-			Producto p = new Producto();
-			ProductoDb db_prod = new ProductoDb();
-			prod.setId(Integer.parseInt(request.getParameter("idProd")));
-			p = db_prod.getById(prod);
-			request.setAttribute("producto", p);
-			RequestDispatcher rd = request.getRequestDispatcher("update_product.jsp");
-			rd.forward(request, response);
+			
 		}
 	}
 
@@ -68,7 +73,46 @@ public class PedidoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		String opcion = request.getParameter("opcion");
+		PedidoController ped_controller = new PedidoController();
+		ClienteController cli_controller = new ClienteController();
+		ProductoController prod_controller = new ProductoController();
+		
+		if (opcion.equals("crearPedido")) {
+			PedidoDetalle pd = new PedidoDetalle();
+			Pedido ped = new Pedido();
+			Cliente c = new Cliente();
+			Cliente cli = new Cliente();
+			
+			c.setId_cliente(Integer.parseInt(request.getParameter("idCliente")));
+			cli = cli_controller.getById(c);
+			pd.setId_detalle(Integer.parseInt(request.getParameter("idPedDet")));
+			ped.setDetalle(pd);
+			ped_controller.newPedido(ped, cli);			
+			
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+			
+		} else if (opcion.equals("addProduct")) {
+			PedidoDetalle pd = new PedidoDetalle();
+			ItemPedido ip = new ItemPedido();
+			LinkedList<Producto> lista_productos = new LinkedList<>();
+			
+			pd.setId_detalle(Integer.parseInt(request.getParameter("idPedDet")));
+			
+			ip.setId_producto(Integer.parseInt(request.getParameter("idProd")));
+			ip.setId_detalle(Integer.parseInt(request.getParameter("idPedDet")));
+			ip.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
+			
+			ped_controller.addProduct(ip);
+			lista_productos = prod_controller.listaProductos();
+			
+			request.setAttribute("lista", lista_productos);
+			request.setAttribute("pedido_detalle", pd);
+			RequestDispatcher rd = request.getRequestDispatcher("new_pedido.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }

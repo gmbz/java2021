@@ -1,33 +1,31 @@
 package models;
 
+import java.util.HashMap;
+
 public class PedidoDetalle {
-	private Pedido pedido;
-	private Producto producto;
-	private int cantidad;
+	private int id_detalle;
 	private double importe;
+	private HashMap<Producto, ItemPedido> productos;
 
-	public Pedido getPedido() {
-		return pedido;
+	
+	public HashMap<Producto, ItemPedido> getProductos() {
+		return productos;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public PedidoDetalle() {
+		this.productos = new HashMap<>();
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public void addProduct(Producto prod, ItemPedido ip) {
+		this.productos.put(prod, ip);
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public int getId_detalle() {
+		return id_detalle;
 	}
 
-	public int getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setId_detalle(int id_detalle) {
+		this.id_detalle = id_detalle;
 	}
 
 	public double getImporte() {
@@ -40,8 +38,8 @@ public class PedidoDetalle {
 
 	@Override
 	public String toString() {
-		return "PedidoDetalle [pedido=" + pedido + ", producto=" + producto + ", cantidad=" + cantidad + ", importe="
-				+ importe + "]";
+		return "PedidoDetalle [id_detalle=" + id_detalle + ", importe=" + importe + ", productos=" + productos + "]";
 	}
+
 
 }

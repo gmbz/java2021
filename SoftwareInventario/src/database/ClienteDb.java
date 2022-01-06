@@ -15,7 +15,7 @@ public class ClienteDb {
 		LinkedList<Cliente> clientes = new LinkedList<>();
 		String query;
 		try {
-			query = "SELECT id_cliente, nombre, apellido, email, tel, direccion FROM cliente";
+			query = "SELECT id_cliente, nombre, apellido, email, telefono, direccion FROM cliente";
 			stmt = DbConnector.getInstancia().getConn().createStatement();
 			rs = stmt.executeQuery(query);
 			if (rs != null) {
@@ -25,7 +25,7 @@ public class ClienteDb {
 					c.setNombre(rs.getString("nombre"));
 					c.setApellido(rs.getString("apellido"));
 					c.setEmail(rs.getString("email"));
-					c.setTel(rs.getString("tel"));
+					c.setTel(rs.getString("telefono"));
 					c.setDireccion(rs.getString("direccion"));
 
 					clientes.add(c);
@@ -55,7 +55,7 @@ public class ClienteDb {
 		ResultSet rs = null;
 		String query;
 		try {
-			query = "SELECT id_cliente, nombre, apellido, email, tel, direccion FROM cliente WHERE id_cliente=?";
+			query = "SELECT id_cliente, nombre, apellido, email, telefono, direccion FROM cliente WHERE id_cliente=?";
 			stmt = DbConnector.getInstancia().getConn().prepareStatement(query);
 			stmt.setInt(1, cli.getId_cliente());
 			rs = stmt.executeQuery();
@@ -65,7 +65,7 @@ public class ClienteDb {
 				c.setNombre(rs.getString("nombre"));
 				c.setApellido(rs.getString("apellido"));
 				c.setEmail(rs.getString("email"));
-				c.setTel(rs.getString("tel"));
+				c.setTel(rs.getString("telefono"));
 				c.setDireccion(rs.getString("direccion"));
 			}
 		} catch (SQLException e) {
@@ -91,7 +91,7 @@ public class ClienteDb {
 		ResultSet keyResultSet = null;
 		String query;
 		try {
-			query = "INSERT INTO cliente(nombre, apellido, email, tel, direccion) VALUES(?, ?, ?, ?, ?)";
+			query = "INSERT INTO cliente(nombre, apellido, email, telefono, direccion) VALUES(?, ?, ?, ?, ?)";
 			stmt = DbConnector.getInstancia().getConn().prepareStatement(query,
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, c.getNombre());
@@ -147,13 +147,14 @@ public class ClienteDb {
 		PreparedStatement stmt = null;
 		String query;
 		try {
-			query = "UPDATE cliente SET nombre=?, apellido=?, email=?, tel=?, direccion=? WHERE id_cliente=?";
+			query = "UPDATE cliente SET nombre=?, apellido=?, email=?, telefono=?, direccion=? WHERE id_cliente=?";
 			stmt = DbConnector.getInstancia().getConn().prepareStatement(query);
 			stmt.setString(1, c.getNombre());
 			stmt.setString(2, c.getApellido());
 			stmt.setString(3, c.getEmail());
 			stmt.setString(4, c.getTel());
 			stmt.setString(5, c.getDireccion());
+			stmt.setInt(6, c.getId_cliente());
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {

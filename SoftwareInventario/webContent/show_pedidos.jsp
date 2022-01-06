@@ -1,4 +1,5 @@
 <%@page import="models.Pedido"%>
+<%@page import="models.Producto"%>
 <%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -23,8 +24,11 @@ LinkedList<Pedido> lista = (LinkedList<Pedido>) request.getAttribute("lista");
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">Fecha</th>
+					<th scope="col">Cliente</th>
 					<th scope="col">Detalle</th>
-					<th scope="col"></th>
+					<th scope="col">Productos</th>
+					<th scope="col">Importe</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -34,12 +38,10 @@ LinkedList<Pedido> lista = (LinkedList<Pedido>) request.getAttribute("lista");
 				<tr>
 					<th scope="row"><%=ped.getNro_pedido()%></th>
 					<td><%=ped.getFecha()%></td>
-					<td><%=ped.getDetalle()%></td>
-					<td><a class="btn btn-primary btn-sm"
-						href="#"
-						role="button">Editar</a> <a class="btn btn-danger btn-sm"
-						href="#"
-						role="button">Eliminar</a></td>
+					<td><%=ped.getCliente()%></td>
+					<td><%=ped.getDetalle().getId_detalle()%></td>
+					<td><%=ped.getDetalle().getProductos()%></td>
+					<td><%=ped.getDetalle().getImporte()%></td>
 				</tr>
 				<%
 				}
