@@ -2,20 +2,14 @@
 <%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-
-<title>Insert title here</title>
-
+<%@ include file="head.jsp"%>
 <%
 LinkedList<Producto> lista = (LinkedList<Producto>) request.getAttribute("lista");
 %>
-</head>
 <body>
 
 	<%@ include file="navigation.jsp"%>
+
 	<div>
 		<a class="btn btn-success btn-sm"
 			href="productoServlet?opcion=generarExcel" role="button">Generar
@@ -38,7 +32,8 @@ LinkedList<Producto> lista = (LinkedList<Producto>) request.getAttribute("lista"
 	</div>
 
 	<div class="container">
-		<table class="table">
+		<h2>Listado de Productos</h2>
+		<table class="table table-striped table-sm">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -56,14 +51,14 @@ LinkedList<Producto> lista = (LinkedList<Producto>) request.getAttribute("lista"
 				for (Producto prod : lista) {
 				%>
 				<tr>
-					<th scope="row"><%=prod.getId()%></th>
-					<td><%=prod.getDescrip()%></td>
-					<td><%=prod.getMarca()%></td>
-					<td><%=prod.getStock()%></td>
-					<td><%=prod.getPrecio()%></td>
-					<td><%=prod.getProveedor().getNombre()%></td>
-					<td><%=prod.getCategoria().getDescripcion()%></td>
-					<td><a class="btn btn-primary btn-sm"
+					<th scope="row" class="align-middle"><%=prod.getId()%></th>
+					<td class="align-middle"><%=prod.getDescrip()%></td>
+					<td class="align-middle"><%=prod.getMarca()%></td>
+					<td class="align-middle"><%=prod.getStock()%></td>
+					<td class="align-middle"><%=prod.getPrecio()%></td>
+					<td class="align-middle"><%=prod.getProveedor().getNombre()%></td>
+					<td class="align-middle"><%=prod.getCategoria().getDescripcion()%></td>
+					<td class="align-middle"><a class="btn btn-primary btn-sm"
 						href="productoServlet?opcion=buscar&idProd=<%=prod.getId()%>"
 						role="button">Editar</a> <a class="btn btn-danger btn-sm"
 						href="productoServlet?opcion=borrar&idProd=<%=prod.getId()%>"
@@ -75,6 +70,6 @@ LinkedList<Producto> lista = (LinkedList<Producto>) request.getAttribute("lista"
 			</tbody>
 		</table>
 	</div>
-
+	<%@ include file="scripts.html"%>
 </body>
 </html>

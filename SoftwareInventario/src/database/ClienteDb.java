@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import models.Cliente;
 
 public class ClienteDb {
+
 	public LinkedList<Cliente> getAll() {
 		Statement stmt = null;
 		ResultSet rs = null;

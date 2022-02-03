@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-
-<title>Insert title here</title>
-</head>
+<%@ include file="head.jsp"%>
 <body>
-
 	<%@ include file="navigation.jsp"%>
 	<div class="container">
 		<h2 class="text-center">Nueva categoria</h2>
@@ -27,6 +20,6 @@
 			</form>
 		</div>
 	</div>
-
+	<%@ include file="scripts.html"%>
 </body>
 </html>

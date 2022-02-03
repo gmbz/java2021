@@ -2,23 +2,38 @@
 <%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-
-<title>Insert title here</title>
-
+<%@ include file="head.jsp"%>
 <%
 LinkedList<Proveedor> lista = (LinkedList<Proveedor>) request.getAttribute("lista");
 %>
-</head>
 <body>
 
 	<%@ include file="navigation.jsp"%>
 
+	<div>
+		<a class="btn btn-success btn-sm"
+			href="proveedorServlet?opcion=generarExcel" role="button">Generar
+			Excel</a>
+	</div>
+
+	<div>
+		<form action="proveedorServlet?opcion=leerExcel" method="POST"
+			enctype="multipart/form-data" class="col-4">
+			<div class="form-group d-flex">
+				<div class="input-group mb-3">
+					<label for="formFile" class="form-label mt-4"></label> <input
+						class="form-control" type="file" id="formFile" name="inputExcel"
+						aria-describedby="button-addon">
+					<button type="submit" class="btn btn-info btn-sm"
+						aria-describedby="button-addon">Importar Excel</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
 	<div class="container">
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -49,6 +64,6 @@ LinkedList<Proveedor> lista = (LinkedList<Proveedor>) request.getAttribute("list
 			</tbody>
 		</table>
 	</div>
-
+	<%@ include file="scripts.html"%>
 </body>
 </html>

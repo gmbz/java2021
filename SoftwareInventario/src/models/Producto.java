@@ -8,6 +8,7 @@ public class Producto {
 	private double precio;
 	private Proveedor proveedor;
 	private Categoria categoria;
+	private int totalVendidos;
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -69,6 +70,14 @@ public class Producto {
 	public String toString() {
 		return "Producto [id=" + id + ", descrip=" + descrip + ", stock=" + stock + ", marca=" + marca + ", precio="
 				+ precio + ", proveedor=" + proveedor + ", categoria=" + categoria + "]";
+	}
+
+	public int getTotalVendidos() {
+		return totalVendidos;
+	}
+
+	public void setTotalVendidos(int totalVendidos) {
+		this.totalVendidos = totalVendidos;
 	}
 
 }

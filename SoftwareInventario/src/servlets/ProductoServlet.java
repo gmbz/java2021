@@ -67,7 +67,9 @@ public class ProductoServlet extends HttpServlet {
 			LinkedList<Producto> lista = new LinkedList<>();
 
 			lista = prod_controller.listaProductos();
-
+			
+			String titulo = "Listado de productos";
+			request.setAttribute("titulo", titulo);
 			request.setAttribute("lista", lista);
 			RequestDispatcher rd = request.getRequestDispatcher("show_products.jsp");
 			rd.forward(request, response);
@@ -88,11 +90,23 @@ public class ProductoServlet extends HttpServlet {
 
 			prod.setId(Integer.parseInt(request.getParameter("idProd")));
 			p = prod_controller.getById(prod);
-
+			
+			String titulo = "Editar producto";
+			request.setAttribute("titulo", titulo);
 			request.setAttribute("producto", p);
 			RequestDispatcher rd = request.getRequestDispatcher("update_product.jsp");
 			rd.forward(request, response);
-
+		} else if (opcion.equals("listarVendidos")) {
+			LinkedList<Producto> productos_mas_vendidos = new LinkedList<>();
+			
+			productos_mas_vendidos = prod_controller.listaMasVendidos();
+			
+			String titulo = "Ranking productos";
+			request.setAttribute("titulo", titulo);
+			request.setAttribute("productos_mas_vendidos", productos_mas_vendidos);
+			RequestDispatcher rd = request.getRequestDispatcher("show_mas_vendidos.jsp");
+			rd.forward(request, response);
+			
 		} else if (opcion.equals("generarExcel")) {
 			response.setContentType("application/octet-stream");
 			
@@ -143,7 +157,7 @@ public class ProductoServlet extends HttpServlet {
 			workbook.write(outputStream);
 			workbook.close();
 			outputStream.close();
-		} 
+		}
 	}
 
 	/**
@@ -181,9 +195,9 @@ public class ProductoServlet extends HttpServlet {
 			prod.setStock(Integer.parseInt(request.getParameter("cantProd")));
 			prod.setMarca(request.getParameter("marca"));
 			prod.setPrecio(Double.parseDouble(request.getParameter("precio")));
-			prov.setId(Integer.parseInt(request.getParameter("idProv")));
+			prov.setId(Integer.parseInt(request.getParameter("idProveedor")));
 			prod.setProveedor(prov);
-			cat.setId(Integer.parseInt(request.getParameter("idCat")));
+			cat.setId(Integer.parseInt(request.getParameter("idCategoria")));
 			prod.setCategoria(cat);
 			prod_controller.update(prod);
 

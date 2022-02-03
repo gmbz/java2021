@@ -1,17 +1,10 @@
 <%@page import="models.Cliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-
+<%@ include file="head.jsp"%>
 <%
 Cliente cli = (Cliente) request.getAttribute("cliente");
 %>
-
-</head>
 <body>
 
 	<%@ include file="navigation.jsp"%>
@@ -22,7 +15,8 @@ Cliente cli = (Cliente) request.getAttribute("cliente");
 				<input type="hidden" name="opcion" value="editar">
 				<div class="form-group">
 					<label for="inputCliente">ID</label> <input type="hidden"
-						class="form-control" name="idCliente" placeholder="<%=cli.getId_cliente()%>"
+						class="form-control" name="idCliente"
+						placeholder="<%=cli.getId_cliente()%>"
 						value="<%=cli.getId_cliente()%>">
 				</div>
 				<div class="form-group">
@@ -32,14 +26,14 @@ Cliente cli = (Cliente) request.getAttribute("cliente");
 						value="<%=cli.getNombre()%>">
 				</div>
 				<div class="form-group">
-					<label for="inputApellido">Nuevo apellido</label> <input type="text"
-						class="form-control" id="inputApellido"
+					<label for="inputApellido">Nuevo apellido</label> <input
+						type="text" class="form-control" id="inputApellido"
 						placeholder="<%=cli.getApellido()%>" name="apellidoCliente"
 						value="<%=cli.getApellido()%>">
 				</div>
 				<div class="form-group">
-					<label for="inputDireccion">Nueva direccion</label> <input type="text"
-						class="form-control" id="inputDireccion"
+					<label for="inputDireccion">Nueva direccion</label> <input
+						type="text" class="form-control" id="inputDireccion"
 						placeholder="<%=cli.getDireccion()%>" name="direcCliente"
 						value="<%=cli.getDireccion()%>">
 				</div>
@@ -51,9 +45,8 @@ Cliente cli = (Cliente) request.getAttribute("cliente");
 				</div>
 				<div class="form-group">
 					<label for="inputTel">Nuevo telefono</label> <input type="text"
-						class="form-control" id="inputTel"
-						placeholder="<%=cli.getTel()%>" name="telCliente"
-						value="<%=cli.getTel()%>">
+						class="form-control" id="inputTel" placeholder="<%=cli.getTel()%>"
+						name="telCliente" value="<%=cli.getTel()%>">
 				</div>
 				<div class="d-flex justify-content-center mt-3">
 					<button type="submit" class="btn btn-primary">Actualizar</button>
@@ -61,6 +54,6 @@ Cliente cli = (Cliente) request.getAttribute("cliente");
 			</form>
 		</div>
 	</div>
-
+	<%@ include file="scripts.html"%>
 </body>
 </html>

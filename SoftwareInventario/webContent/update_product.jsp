@@ -1,23 +1,10 @@
 <%@page import="models.Producto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-
+<%@ include file="head.jsp"%>
 <%
 Producto prod = (Producto) request.getAttribute("producto");
 %>
-
-<title>Insert title here</title>
-</head>
 <body>
 
 	<%@ include file="navigation.jsp"%>
@@ -58,13 +45,13 @@ Producto prod = (Producto) request.getAttribute("producto");
 				<div class="form-group">
 					<label for="inputProveedor">ID Proveedor</label> <input type="text"
 						class="form-control" id="inputProveedor"
-						placeholder="<%=prod.getProveedor().getId()%>" name="idProv"
+						placeholder="<%=prod.getProveedor().getId()%>" name="idProveedor"
 						value="<%=prod.getProveedor().getId()%>">
 				</div>
 				<div class="form-group">
 					<label for="inputCategoria">ID Categoria</label> <input type="text"
 						class="form-control" id="inputCategoria"
-						placeholder="<%=prod.getCategoria().getId()%>" name="idProv"
+						placeholder="<%=prod.getCategoria().getId()%>" name="idCategoria"
 						value="<%=prod.getCategoria().getId()%>">
 				</div>
 				<div class="d-flex justify-content-center mt-3">
@@ -73,6 +60,6 @@ Producto prod = (Producto) request.getAttribute("producto");
 			</form>
 		</div>
 	</div>
-
+	<%@ include file="scripts.html"%>
 </body>
 </html>

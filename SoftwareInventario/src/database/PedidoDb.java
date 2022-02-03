@@ -14,6 +14,7 @@ import models.PedidoDetalle;
 import models.Producto;
 
 public class PedidoDb {
+
 	public LinkedList<Pedido> getAll() {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -60,13 +61,154 @@ public class PedidoDb {
 		return pedidos;
 	}
 
+	public LinkedList<Pedido> getAllByCliente(Cliente cli) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		LinkedList<Pedido> pedidos = new LinkedList<>();
+		String query;
+		try {
+			query = "SELECT nro_pedido, fecha, id_cliente FROM pedido" + " WHERE id_cliente = ?";
+			stmt = DbConnector.getInstancia().getConn().prepareStatement(query);
+			stmt.setInt(1, cli.getId_cliente());
+			rs = stmt.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					Pedido p = new Pedido();
+					PedidoDetalle pd = new PedidoDetalle();
+
+					p.setNro_pedido(rs.getInt("nro_pedido"));
+					p.setFecha(rs.getObject("fecha", LocalDate.class));
+					p.setCliente(cli);
+
+					pd = setDetalleProducto(p);
+					p.setDetalle(pd);
+
+					pedidos.add(p);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return pedidos;
+	}
+	
+	public PedidoDetalle getItemsPedidos(PedidoDetalle pd) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		PedidoDetalle ped_det = new PedidoDetalle();
+		String query;
+		try {
+			query = "SELECT p.id_producto, p.descripcion, dp.cantidad, dp.subtotal, dp.id_detalle"
+					+ " FROM pedido_detalle AS pd"
+					+ " INNER JOIN detalle_producto AS dp ON dp.id_detalle=pd.id_detalle"
+					+ " INNER JOIN producto AS p ON p.id_producto=dp.id_producto"
+					+ " WHERE pd.id_detalle = ?";
+			stmt = DbConnector.getInstancia().getConn().prepareStatement(query);
+			stmt.setInt(1, pd.getId_detalle());
+			rs = stmt.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					Producto prod = new Producto();
+					ItemPedido ip = new ItemPedido();
+					
+					prod.setId(rs.getInt("p.id_producto"));
+					prod.setDescrip(rs.getString("p.descripcion"));
+					ip.setCantidad(rs.getInt("dp.cantidad"));
+					ip.setSubtotal(rs.getDouble("dp.subtotal"));
+					ped_det.setId_detalle(rs.getInt("dp.id_detalle"));
+					
+					ped_det.addProduct(prod, ip);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ped_det;
+	}
+	
+//	public Pedido getItemsPedidos(Pedido ped) {
+//		PreparedStatement stmt = null;
+//		ResultSet rs = null;
+//		Pedido pedido = new Pedido();
+//		String query;
+//		try {
+//			query = "SELECT nro_pedido, p.fecha, c.nombre, c.apellido, pd.id_detalle,"
+//					+ " pd.importe, prod.descripcion, prod.precio, dp.subtotal, dp.cantidad"
+//					+ " FROM pedido AS p"
+//					+ " INNER JOIN cliente AS c ON c.id_cliente=p.id_cliente"
+//					+ " INNER JOIN ped_det ON ped_det.nro_pedido=p.nro_pedido"
+//					+ " INNER JOIN pedido_detalle AS pd ON pd.id_detalle=ped_det.id_detalle"
+//					+ " INNER JOIN detalle_producto AS dp ON dp.id_detalle=pd.id_detalle"
+//					+ " INNER JOIN producto AS prod ON prod.id_producto=dp.id_producto"
+//					+ " WHERE p.nro_pedido = ?"
+//					;
+//			stmt = DbConnector.getInstancia().getConn().prepareStatement(query);
+//			stmt.setInt(1, ped.getNro_pedido());
+//			rs = stmt.executeQuery();
+//			if (rs != null) {
+//				while (rs.next()) {
+//					Producto prod = new Producto();
+//					ItemPedido ip = new ItemPedido();
+//					PedidoDetalle
+//					
+//					prod.setId(rs.getInt("p.id_producto"));
+//					prod.setDescrip(rs.getString("p.descripcion"));
+//					ip.setCantidad(rs.getInt("dp.cantidad"));
+//					ip.setSubtotal(rs.getDouble("dp.subtotal"));
+//					ped_det.setId_detalle(rs.getInt("dp.id_detalle"));
+//					
+//					ped_det.addProduct(prod, ip);
+//				}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (rs != null) {
+//					rs.close();
+//				}
+//				if (stmt != null) {
+//					stmt.close();
+//				}
+//				DbConnector.getInstancia().releaseConn();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return ped_det;
+//	}
+
 	public Pedido getById(Pedido ped) {
 		Pedido p = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String query;
 		try {
-			query = "SELECT nro_pedido, fecha FROM pedido WHERE nro_pedido=?";
+			query = "SELECT nro_pedido, fecha, id_cliente FROM pedido WHERE nro_pedido=?";
 			stmt = DbConnector.getInstancia().getConn().prepareStatement(query);
 			stmt.setInt(1, ped.getNro_pedido());
 			rs = stmt.executeQuery();
@@ -74,8 +216,14 @@ public class PedidoDb {
 				p = new Pedido();
 				p.setNro_pedido(rs.getInt("nro_pedido"));
 				p.setFecha(rs.getObject("fecha", LocalDate.class));
-
-				setDetalleProducto(p);
+				
+				PedidoDetalle pd = new PedidoDetalle();
+				pd = setDetalleProducto(p);
+				p.setDetalle(pd);
+				
+				Cliente cli = new Cliente();
+				cli.setId_cliente(rs.getInt("id_cliente"));
+				p.setCliente(cli);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -249,8 +397,7 @@ public class PedidoDb {
 					+ " INNER JOIN pedido_detalle AS pd ON pd.id_detalle=ped_det.id_detalle"
 					+ " INNER JOIN detalle_producto AS dp ON dp.id_detalle=ped_det.id_detalle"
 					+ " INNER JOIN producto AS prod ON dp.id_producto=prod.id_producto" + " WHERE p.nro_pedido=?"
-					+ " GROUP BY dp.id_producto"
-					;
+					+ " GROUP BY dp.id_producto";
 			stmt = DbConnector.getInstancia().getConn().prepareStatement(query);
 			stmt.setInt(1, ped.getNro_pedido());
 			rs = stmt.executeQuery();
@@ -289,7 +436,6 @@ public class PedidoDb {
 
 		return pd;
 	}
-	
 
 	private void setCliente(Pedido ped) {
 		PreparedStatement stmt = null;

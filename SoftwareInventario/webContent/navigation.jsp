@@ -1,62 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
 
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sandstone/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-	integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-	crossorigin="anonymous"></script>
-
-<title>Insert title here</title>
-</head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="index.jsp">XD</a>
+			<a class="navbar-brand" href="indexServlet">XD</a>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link"
-						href="new_product.jsp">Nuevo Producto</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="productoServlet?opcion=listar">Listar Producto</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="new_proveedor.jsp">Nuevo Proveedor</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="proveedorServlet?opcion=listar">Listar Proveedores</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="new_categoria.jsp">Nueva Categoria</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="categoriaServlet?opcion=listar">Listar Categorias</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="pedidoServlet?opcion=nuevo">Nuevo Pedido</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="pedidoServlet?opcion=listar">Listar Pedidos</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="new_cliente.jsp">Nuevo Cliente</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="clienteServlet?opcion=listar">Listar Clientes</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Pedidos</a>
+						<div class="dropdown-menu">
+							<a href="pedidoServlet?opcion=nuevo" class="dropdown-item">Nuevo
+								Pedido</a> <a href="pedidoServlet?opcion=listar"
+								class="dropdown-item">Listar Pedidos</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Productos</a>
+						<div class="dropdown-menu">
+							<a href="new_product.jsp" class="dropdown-item">Nuevo
+								Producto</a> <a href="productoServlet?opcion=listar"
+								class="dropdown-item">Listar Productos</a>
+								<a href="productoServlet?opcion=listarVendidos"
+								class="dropdown-item">Mas Vendidos</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Clientes</a>
+						<div class="dropdown-menu">
+							<a href="new_cliente.jsp" class="dropdown-item">Nuevo Cliente</a>
+							<a href="clienteServlet?opcion=listar" class="dropdown-item">Listar
+								Cliente</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Proveedores</a>
+						<div class="dropdown-menu">
+							<a href="new_proveedor.jsp" class="dropdown-item">Nuevo
+								Proveedor</a> <a href="proveedorServlet?opcion=listar"
+								class="dropdown-item">Listar Proveedores</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">Categorias</a>
+						<div class="dropdown-menu">
+							<a href="new_categoria.jsp" class="dropdown-item">Nuevo
+								Categoria</a> <a href="categoriaServlet?opcion=listar"
+								class="dropdown-item">Listar Categorias</a>
+						</div></li>
+
 				</ul>
 			</div>
 		</div>
 	</nav>
+
+
 
 </body>
 </html>

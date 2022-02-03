@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-
-<title>Insert title here</title>
-</head>
+<%@ include file="head.jsp"%>
 <body>
 
 	<%@ include file="navigation.jsp"%>
@@ -22,8 +16,8 @@
 				</div>
 				<div class="form-group">
 					<label for="inputMarca">Marca</label> <input type="text"
-						class="form-control" id="inputMarca"
-						placeholder="Ingresar marca" name="marca">
+						class="form-control" id="inputMarca" placeholder="Ingresar marca"
+						name="marca">
 				</div>
 				<div class="form-group">
 					<label for="inputQuantity">Cantidad</label> <input type="text"
@@ -32,8 +26,8 @@
 				</div>
 				<div class="form-group">
 					<label for="inputPrice">Precio</label> <input type="text"
-						class="form-control" id="inputPrice"
-						placeholder="Ingresar precio" name="precio">
+						class="form-control" id="inputPrice" placeholder="Ingresar precio"
+						name="precio">
 				</div>
 				<div class="form-group">
 					<label for="inputProveedor">ID Proveedor</label> <input type="text"
@@ -52,6 +46,6 @@
 			</form>
 		</div>
 	</div>
-
+	<%@ include file="scripts.html"%>
 </body>
 </html>

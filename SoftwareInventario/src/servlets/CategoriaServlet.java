@@ -65,7 +65,9 @@ public class CategoriaServlet extends HttpServlet {
 			LinkedList<Categoria> lista = new LinkedList<>();
 
 			lista = cat_controller.listarCategorias();
-
+			
+			String titulo = "Listado de categorias";
+			request.setAttribute("titulo", titulo);
 			request.setAttribute("lista", lista);
 			RequestDispatcher rd = request.getRequestDispatcher("show_categorias.jsp");
 			rd.forward(request, response);
@@ -86,6 +88,8 @@ public class CategoriaServlet extends HttpServlet {
 			cat.setId(Integer.parseInt(request.getParameter("idCat")));
 			c = cat_controller.getById(cat);
 			
+			String titulo = "Editar categoria";
+			request.setAttribute("titulo", titulo);
 			request.setAttribute("categoria", c);
 			RequestDispatcher rd = request.getRequestDispatcher("update_categoria.jsp");
 			rd.forward(request, response);

@@ -2,20 +2,14 @@
 <%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-
-<title>Insert title here</title>
+<%@ include file="head.jsp"%>
 <%
 LinkedList<Categoria> lista = (LinkedList<Categoria>) request.getAttribute("lista");
 %>
-</head>
 <body>
 
 	<%@ include file="navigation.jsp"%>
-	
+
 	<div>
 		<a class="btn btn-success btn-sm"
 			href="categoriaServlet?opcion=generarExcel" role="button">Generar
@@ -38,7 +32,7 @@ LinkedList<Categoria> lista = (LinkedList<Categoria>) request.getAttribute("list
 	</div>
 
 	<div class="container">
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -65,6 +59,6 @@ LinkedList<Categoria> lista = (LinkedList<Categoria>) request.getAttribute("list
 			</tbody>
 		</table>
 	</div>
-
+	<%@ include file="scripts.html"%>
 </body>
 </html>
