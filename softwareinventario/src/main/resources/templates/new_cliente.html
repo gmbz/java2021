@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h2 class="text-center">Nuevo cliente</h2>
+      <div class="row justify-content-center">
+        <form
+          th:action="@{/clientes/create}"
+          th:object="${cliente}"
+          method="POST"
+          class="col-8"
+        >
+          <input type="hidden" name="opcion" value="create" />
+          <div class="form-group">
+            <label for="inputNombre">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputNombre"
+              placeholder="Ingresar nombre"
+              th:field="*{nombre}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputApellido">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputApellido"
+              placeholder="Ingresar apellido"
+              th:field="*{apellido}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputDireccion">Direccion</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputDireccion"
+              placeholder="Ingresar direccion"
+              th:field="*{direccion}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail"
+              placeholder="Ingresar email"
+              th:field="*{email}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputTel">Telefono</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputTel"
+              placeholder="Ingresar telefono"
+              th:field="*{tel}"
+            />
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">
+              Registrar cliente
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

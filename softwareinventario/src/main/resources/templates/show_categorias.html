@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+    
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="categoria : ${categorias}">
+            <th scope="row" th:text="${categoria.getId}"></th>
+            <td th:text="${categoria.getDescripcion}"></td>
+            <td>
+              <a
+                class="btn btn-primary btn-sm"
+                th:href="@{/categorias/update/{id}(id=${categoria.getId})}"
+                role="button"
+                >Editar</a
+              >
+              <a
+                class="btn btn-danger btn-sm"
+                th:href="@{/categorias/delete/{id}(id=${categoria.getId})}"
+                role="button"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h2>Listado de Productos</h2>
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Proveedor</th>
+            <th scope="col">Categoria</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="producto : ${productos}">
+            <th
+              scope="row"
+              class="align-middle"
+              th:text="${producto.getId}"
+            ></th>
+            <td class="align-middle" th:text="${producto.getDescrip}"></td>
+            <td class="align-middle" th:text="${producto.getStock}"></td>
+            <td class="align-middle" th:text="${producto.getPrecio}"></td>
+            <td
+              class="align-middle"
+              th:text="${producto.getProveedor.getNombre}"
+            ></td>
+            <td
+              class="align-middle"
+              th:text="${producto.getCategoria.getDescripcion}"
+            ></td>
+            <td class="align-middle"> 
+              <a
+                class="btn btn-primary btn-sm"
+                th:href="@{/productos/update/{id}(id=${producto.getId})}"
+                role="button"
+                >Editar</a
+              >
+              <a
+                class="btn btn-danger btn-sm"
+                th:href="@{/productos/delete/{id}(id=${producto.getId})}"
+                role="button"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

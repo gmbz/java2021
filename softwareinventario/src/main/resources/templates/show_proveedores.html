@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Telefono</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="proveedor : ${proveedores}">
+            <th scope="row" th:text="${proveedor.getId}"></th>
+            <td th:text="${proveedor.getNombre}"></td>
+            <td th:text="${proveedor.getApellido}"></td>
+            <td th:text="${proveedor.getTel}"></td>
+            <td>
+              <a
+                class="btn btn-primary btn-sm"
+                th:href="@{/proveedores/update/{id}(id=${proveedor.getId})}"
+                role="button"
+                >Editar</a
+              >
+              <a
+                class="btn btn-danger btn-sm"
+                th:href="@{/proveedores/delete/{id}(id=${proveedor.getId})}"
+                role="button"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

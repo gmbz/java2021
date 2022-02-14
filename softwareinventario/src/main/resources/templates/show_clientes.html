@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <div>
+        <a
+          class="btn btn-success btn-sm"
+          href="@{/clientes/excel}"
+          role="button"
+          >Generar Excel</a
+        >
+      </div>
+
+      <div>
+        <form
+          th:action="@{/clientes/leer_excel}"
+          method="POST"
+          enctype="multipart/form-data"
+          class="col-4"
+        >
+          <div class="form-group d-flex">
+            <div class="input-group mb-3">
+              <label for="formFile" class="form-label mt-4"></label>
+              <input
+                class="form-control"
+                type="file"
+                id="formFile"
+                th:name="inputExcel"
+                aria-describedby="button-addon"
+              />
+              <button
+                type="submit"
+                class="btn btn-info btn-sm"
+                aria-describedby="button-addon"
+              >
+                Importar Excel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefono</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="cliente : ${clientes}">
+            <th scope="row" th:text="${cliente.getId_cliente}"></th>
+            <td th:text="${cliente.getNombre}"></td>
+            <td th:text="${cliente.getApellido}"></td>
+            <td th:text="${cliente.getDireccion}"></td>
+            <td th:text="${cliente.getEmail}"></td>
+            <td th:text="${cliente.getTel}"></td>
+            <td>
+              <a
+                class="btn btn-primary btn-sm"
+                th:href="@{/clientes/update/{id}(id=${cliente.getId_cliente})}"
+                role="button"
+                >Editar</a
+              >
+              <a
+                class="btn btn-danger btn-sm"
+                th:href="@{/clientes/delete/{id}(id=${cliente.getId_cliente})}"
+                role="button"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

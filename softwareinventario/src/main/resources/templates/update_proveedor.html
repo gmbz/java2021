@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h2 class="text-center">Actualizar proveedor</h2>
+      <div class="row justify-content-center">
+        <form
+          th:action="@{/proveedores/update}"
+          th:object="${proveedor}"
+          method="POST"
+          class="col-8"
+        >
+          <div class="form-group">
+            <input
+              type="hidden"
+              class="form-control"
+              th:field="*{id}"
+              th:placeholder="${proveedor.getId}"
+              th:value="${proveedor.getId}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputFirstName">Nombre proveedor</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputFirstName"
+							th:field="*{nombre}"
+              th:placeholder="${proveedor.getNombre}"
+              th:value="${proveedor.getNombre}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputLastName">Apellido proveedor</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputLastName"
+              th:field="*{apellido}"
+              th:placeholder="${proveedor.getApellido}"
+              th:value="${proveedor.getApellido}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputTel">Telefono</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputTel"
+              th:field="*{tel}"
+              th:placeholder="${proveedor.getTel}"
+              th:value="${proveedor.getTel}"
+            />
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">
+              Actualizar proveedor
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

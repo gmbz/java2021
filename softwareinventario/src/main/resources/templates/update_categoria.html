@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h2 class="text-center">Actualizar categoria</h2>
+      <div class="row justify-content-center">
+        <form
+          th:action="@{/categorias/update}"
+          th:object="${categoria}"
+          method="POST"
+          class="col-8"
+        >
+          <div class="form-group">
+            <input
+              type="hidden"
+              class="form-control"
+              th:field="*{id}"
+              th:placeholder="${categoria.getId}"
+              th:th:value="${categoria.getId}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputCat">Descripcion categoria</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputCat"
+              th:field="*{descripcion}"
+              th:placeholder="${categoria.getDescripcion}"
+              th:value="${categoria.getDescripcion}"
+            />
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h2 class="text-center">Nuevo producto</h2>
+      <div class="row justify-content-center">
+        <form
+          th:action="@{/productos/create}"
+          th:object="${producto}"
+          method="POST"
+          class="col-8"
+        >
+          <div class="form-group">
+            <label for="inputProduct">Nuevo producto</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputProduct"
+              placeholder="Ingresar producto"
+              th:field="*{descrip}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputQuantity">Cantidad</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputQuantity"
+              placeholder="Ingresar cantidad"
+              th:field="*{stock}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputPrice">Precio</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputPrice"
+              placeholder="Ingresar precio"
+              th:field="*{precio}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputProveedor">Proveedor</label>
+            <select
+              th:field="*{proveedor}"
+              id="inputProveedor"
+              class="form-control"
+            >
+              <option
+                th:each="proveedor : ${proveedores}"
+                th:value="${proveedor.getId}"
+                th:text="${proveedor.getNombre}"
+              ></option>
+            </select>
+            <!-- <input
+              type="text"
+              class="form-control"
+              id="inputProveedor"
+              placeholder="Ingresar ID proveedor"
+              th:field="*{id}"
+            />-->
+          </div>
+          <div class="form-group">
+            <label for="inputCategoria">Categoria</label>
+            <select
+              th:field="*{categoria}"
+              id="inputCategoria"
+              class="form-control"
+            >
+              <option
+                th:each="categoria : ${categorias}"
+                th:value="${categoria.getId}"
+                th:text="${categoria.getDescripcion}"
+              ></option>
+            </select>
+            <!-- <input
+              type="text"
+              class="form-control"
+              id="inputCategoria"
+              placeholder="Ingresar ID categoria"
+              th:object="${categoria}"
+              th:field="*{id}"
+            /> -->
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">
+              Registrar producto
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

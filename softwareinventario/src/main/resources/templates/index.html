@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container mt-4">
+      <div class="card text-center" style="width: 18rem">
+        <h5 class="card-header">Producto mas vendido</h5>
+        <div class="card-body">
+          <p class="" th:text="${producto_mas_vendido.getDescrip}"></p>
+          <span
+            class="text-muted"
+            th:text="${producto_mas_vendido.getTotalVendidos}"
+          ></span>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

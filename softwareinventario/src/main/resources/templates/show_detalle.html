@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <head th:replace="layout :: header"> </head>
+
+    <div class="container pt-4">
+      <h2>Detalle</h2>
+      <p>Pedido Nº: <span th:text="${pedido.getNro_pedido}"></span></p>
+      <p>Fecha: <span th:text="${pedido.getFecha}"></span></p>
+      <p>
+        Cliente:
+        <span
+          th:text="${pedido.getCliente().getNombre} + ' ' + ${pedido.getCliente().getApellido}"
+        ></span>
+      </p>
+      <p>
+        Direccion: <span th:text="${pedido.getCliente().getDireccion}"></span>
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Precio Neto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="item_pedido : ${pedido.getDetalle().getItems_pedidos}">
+            <td th:text="${item_pedido.getProducto().getDescrip}"></td>
+            <td th:text="${item_pedido.getCantidad}"></td>
+            <td th:text="${item_pedido.getProducto().getPrecio}"></td>
+            <td th:text="${item_pedido.getSubtotal}"></td>
+          </tr>
+          <tr class="table-secondary">
+            <th scope="row" colspan="3">Subtotal</th>
+            <td th:text="${pedido.getDetalle().getImporte}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <head th:replace="layout :: scripts"> </head>
+  </body>
+</html>

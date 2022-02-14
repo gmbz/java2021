@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h2 class="text-center">Actualizar producto</h2>
+      <div class="row justify-content-center">
+        <form
+          method="POST"
+          class="col-8"
+          th:action="@{/productos/update}"
+          th:object="${producto}"
+        >
+          <div class="form-group">
+            <label for="inputProduct">ID</label>
+            <input
+              type="hidden"
+              class="form-control"
+							th:field="*{id}"
+              placeholder="${producto.getId}"
+              value="${producto.getId}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputProduct">Nuevo producto</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputProduct"
+              th:field="*{descrip}"
+              placeholder="${producto.getDescrip}"
+              value="${producto.getDescrip}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputQuantity">Cantidad</label>
+            <input
+              type="text"
+              class="form-control"
+              th:field="*{stock}"
+              placeholder="${producto.getStock}"
+              value="${producto.getStock}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputPrice">Precio</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputPrice"
+              th:field="*{precio}"
+              placeholder="${producto.getPrecio}"
+              value="${producto.getPrecio}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputProveedor">Proveedor</label>
+						<select th:field="*{proveedor.id}" id="inputProveedor" class="form-control">
+							<option
+                th:each="proveedor : ${proveedores}"
+                th:value="${proveedor.getId}"
+                th:text="${proveedor.getNombre}"
+              ></option>
+						</select>
+            <!-- <input
+              type="text"
+              class="form-control"
+              id="inputProveedor"
+              th:field="*{precio"
+              placeholder="${producto.getPrecio}"
+              value="${producto.getPrecio}"
+            />-->
+          </div> 
+          <div class="form-group">
+            <label for="inputCategoria">Categoria</label>
+						<select th:field="*{categoria.id}" id="inputCategoria" class="form-control">
+              <option
+                th:each="categoria : ${categorias}"
+                th:value="${categoria.getId}"
+                th:text="${categoria.getDescripcion}"
+              ></option>
+            </select>
+            <!-- <input
+              type="text"
+              class="form-control"
+              id="inputCategoria"
+              placeholder="<%=prod.getCategoria().getId()%>"
+              name="idCategoria"
+              value="<%=prod.getCategoria().getId()%>"
+            />-->
+          </div> 
+          <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>

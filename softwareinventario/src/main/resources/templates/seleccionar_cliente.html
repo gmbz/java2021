@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h1>SELECCIONAR CLIENTE</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefono</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="cliente : ${clientes}">
+            <th scope="row" th:text="${cliente.getId_cliente}"></th>
+            <td th:text="${cliente.getNombre}"></td>
+            <td th:text="${cliente.getApellido}"></td>
+            <td th:text="${cliente.getDireccion}"></td>
+            <td th:text="${cliente.getEmail}"></td>
+            <td th:text="${cliente.getTel}"></td>
+            <td>
+              <form th:action="@{/pedidos/nuevo_pedido}">
+                <input
+                  type="hidden"
+                  th:name="idCliente"
+                  th:value="${cliente.getId_cliente}"
+                />
+                <button type="submit" class="btn btn-primary">
+                  SELECCIONAR
+                </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <header th:replace="layout :: scripts"></header>
+  </body>
+</html>

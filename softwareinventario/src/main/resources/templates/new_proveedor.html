@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout :: head"> </head>
+  <body>
+    <header th:replace="layout :: header"></header>
+
+    <div class="container">
+      <h2 class="text-center">Nuevo proveedor</h2>
+      <div class="row justify-content-center">
+        <form
+          th:action="@{/proveedores/create}"
+          th:object="${proveedor}"
+          method="POST"
+          class="col-8"
+        >
+          <div class="form-group">
+            <label for="inputFirstName">Nombre proveedor</label>
+            <input
+              type="text"
+              class="form-control"
+							th:field="*{nombre}"
+              id="inputFirstName"
+              placeholder="Ingresar nombre proveedor"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputLastName">Apellido proveedor</label>
+            <input
+              type="text"
+              class="form-control"
+							th:field="*{apellido}"
+              id="inputLastName"
+              placeholder="Ingresar apellido proveedor"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputTel">Telefono</label>
+            <input
+              type="text"
+              class="form-control"
+							th:field="*{tel}"
+              id="inputTel"
+              placeholder="Ingresar telefono"
+            />
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">
+              Registrar proveedor
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div th:replace="layout :: scripts"></div>
+  </body>
+</html>
