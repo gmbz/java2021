@@ -23,6 +23,11 @@
               placeholder="Ingresar producto"
               th:field="*{descrip}"
             />
+            <small
+              class="form-text text-danger"
+              th:if="${#fields.hasErrors('descrip')}"
+              th:errors="*{descrip}"
+            ></small>
           </div>
           <div class="form-group">
             <label for="inputQuantity">Cantidad</label>
@@ -43,6 +48,11 @@
               placeholder="Ingresar precio"
               th:field="*{precio}"
             />
+            <small
+              class="form-text text-danger"
+              th:if="${#fields.hasErrors('precio')}"
+              th:errors="*{precio}"
+            ></small>
           </div>
           <div class="form-group">
             <label for="inputProveedor">Proveedor</label>

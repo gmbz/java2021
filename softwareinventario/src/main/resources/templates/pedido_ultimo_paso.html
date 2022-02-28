@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:replace="layout :: head"> </head>
   <body>
-    <head th:replace="layout :: header"> </head>
+    <header th:replace="layout :: header"></header>
 
     <div class="container pt-4">
       <h2>Detalle</h2>
@@ -16,12 +16,6 @@
       </p>
       <p>
         Direccion: <span th:text="${pedido.getCliente().getDireccion}"></span>
-      </p>
-      <p>
-        Fecha de entrega: <span th:text="${pedido.getFecha_entrega}"></span>
-      </p>
-      <p>
-        Estado: <span th:text="${pedido.getEstado().getDescripcion}"></span>
       </p>
       <table class="table">
         <thead>
@@ -47,6 +41,25 @@
       </table>
     </div>
 
-    <head th:replace="layout :: scripts"> </head>
+    <form th:action="@{/pedidos/create}" method="POST">
+      <label for="inputFechaEntrega">Fecha Entrega</label>
+      <input
+        type="date"
+        name="fechaEntrega"
+        id="inputFechaEntrega"
+        class="form-control"
+        placeholder="Ingresar fecha de entrega"
+      />
+      <input
+        type="hidden"
+        name="nroPedido"
+        th:value="${pedido.getNro_pedido}"
+      />
+      <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary">Crear Pedido</button>
+      </div>
+    </form>
+
+    <div th:replace="layout :: scripts"></div>
   </body>
 </html>

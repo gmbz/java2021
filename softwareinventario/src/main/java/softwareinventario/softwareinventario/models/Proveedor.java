@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "proveedores")
@@ -21,10 +22,13 @@ public class Proveedor {
     @Column(name = "id_proveedor")
     private int id;
     @Column(name = "nombre")
+    @NotEmpty
     private String nombre;
     @Column(name = "apellido")
+    @NotEmpty
     private String apellido;
     @Column(name = "telefono")
+    @NotEmpty
     private String tel;
     @OneToMany(mappedBy = "proveedor", cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH })

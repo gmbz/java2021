@@ -18,30 +18,45 @@
             <input
               type="text"
               class="form-control"
-							th:field="*{nombre}"
+              th:field="*{nombre}"
               id="inputFirstName"
               placeholder="Ingresar nombre proveedor"
             />
+            <small
+              class="form-text text-danger"
+              th:if="${#fields.hasErrors('nombre')}"
+              th:errors="*{nombre}"
+            ></small>
           </div>
           <div class="form-group">
             <label for="inputLastName">Apellido proveedor</label>
             <input
               type="text"
               class="form-control"
-							th:field="*{apellido}"
+              th:field="*{apellido}"
               id="inputLastName"
               placeholder="Ingresar apellido proveedor"
             />
+            <small
+              class="form-text text-danger"
+              th:if="${#fields.hasErrors('apellido')}"
+              th:errors="*{apellido}"
+            ></small>
           </div>
           <div class="form-group">
             <label for="inputTel">Telefono</label>
             <input
               type="text"
               class="form-control"
-							th:field="*{tel}"
+              th:field="*{tel}"
               id="inputTel"
               placeholder="Ingresar telefono"
             />
+            <small
+              class="form-text text-danger"
+              th:if="${#fields.hasErrors('tel')}"
+              th:errors="*{tel}"
+            ></small>
           </div>
           <div class="d-flex justify-content-center mt-3">
             <button type="submit" class="btn btn-primary">

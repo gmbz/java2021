@@ -23,12 +23,17 @@ public class Pedido {
     private int nro_pedido;
     @Column(name = "fecha")
     private LocalDate fecha;
+    @Column(name = "fecha_entrega")
+    private LocalDate fecha_entrega;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_detalle")
     private PedidoDetalle detalle;
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
+    @JoinColumn(name = "id_estado")
+    private EstadoPedido estado;
 
     public int getNro_pedido() {
         return nro_pedido;
@@ -60,6 +65,28 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public LocalDate getFecha_entrega() {
+        return fecha_entrega;
+    }
+
+    public void setFecha_entrega(LocalDate fecha_entrega) {
+        this.fecha_entrega = fecha_entrega;
+    }
+
+    public EstadoPedido getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoPedido estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido [cliente=" + cliente + ", detalle=" + detalle + ", estado=" + estado + ", fecha=" + fecha
+                + ", fecha_entrega=" + fecha_entrega + ", nro_pedido=" + nro_pedido + "]";
     }
 
 }

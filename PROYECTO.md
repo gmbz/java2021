@@ -1,4 +1,4 @@
-# NOMBRE
+# SOFTWARE DE INVENTARIO WEB
 
 ## DESCRIPCION DEL PROYECTO
 El proyecto es una aplicación web que consiste en la gestión de inventario. Se podrá gestionar la entrada y salida de productos, clientes, proveedores, generar pedidos, ver detalle de los pedidos, etc. Tambien será posible visualizar listas de productos mas vendidos, mejores clientes, distintos tipos de reportes y demás.
@@ -24,20 +24,23 @@ La  aplicación será desarrollada con Java 16 con Spring y MySQL.
 
 ### FUNCIONALES
 
-|  REQ  | Descripción                               |
-| :---: | :---------------------------------------- |
-|  01   | Crud productos                            |
-|  02   | Crud proveedores                          |
-|  03   | Crud categorias                           |
-|  04   | Crud clientes                             |
-|  05   | Generar pedidos                           |
-|  06   | Añadir productos a un pedido              |
-|  07   | Mostrar listado de productos mas vendidos |
-|  08   | Mostrar listado de mejores clientes       |
-|  09   | Mostrar detalle de un pedido              |
-|  10   | Mostrar pedidos de un cliente             |
-|  11   | Crud de usuarios                          |
-|  12   | Asignar roles a usuarios                  |
+|  REQ  | Descripción                               | Implementado |
+| :---: | :---------------------------------------- | :----------: |
+|  01   | Crud productos                            |      ✓       |
+|  02   | Crud proveedores                          |      ✓       |
+|  03   | Crud categorias                           |      ✓       |
+|  05   | Generar pedidos                           |      ✓       |
+|  04   | Crud clientes                             |      ✓       |
+|  06   | Añadir productos a un pedido              |      ✓       |
+|  07   | Mostrar listado de productos mas vendidos |      ✓       |
+|  08   | Mostrar listado de mejores clientes       |      ✗       |
+|  09   | Mostrar detalle de un pedido              |      ✓       |
+|  10   | Mostrar pedidos de un cliente             |      ✓       |
+|  11   | Crud de usuarios                          |      ✗       |
+|  12   | Asignar roles a usuarios                  |      ✗       |
+|  12   | Gestionar ingresos de productos           |      ✗       |
+
+
 
 ### NO FUNCIONALES
 

@@ -1,33 +1,29 @@
 package softwareinventario.softwareinventario.models;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "categorias")
-public class Categoria implements Serializable {
+@Table(name = "estados")
+public class EstadoPedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_categoria")
-    private int id;
+    @Column(name = "id_estado")
+    private int id_estado;
     @Column(name = "descripcion")
-    @NotEmpty
     private String descripcion;
 
-    public int getId() {
-        return id;
+    public int getId_estado() {
+        return id_estado;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_estado(int id_estado) {
+        this.id_estado = id_estado;
     }
 
     public String getDescripcion() {
@@ -40,7 +36,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "Categoria [descripcion=" + descripcion + ", id=" + id + "]";
+        return "EstadoPedido [descripcion=" + descripcion + ", id_estado=" + id_estado + "]";
     }
 
 }

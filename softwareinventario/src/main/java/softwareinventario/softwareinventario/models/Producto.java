@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "productos")
@@ -24,10 +27,13 @@ public class Producto {
     @Column(name = "id_producto")
     private int id;
     @Column(name = "descripcion")
+    @NotEmpty
     private String descrip;
     @Column(name = "stock")
     private int stock;
     @Column(name = "precio")
+    @NotNull
+    @Positive
     private double precio;
     @Column(name = "total_vendidos")
     private int totalVendidos;

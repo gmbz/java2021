@@ -8,6 +8,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.validation.Valid;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,6 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,7 +54,14 @@ public class Clientes {
     }
 
     @PostMapping(value = "/create")
-    public String createCliente(@ModelAttribute Cliente cliente) {
+    public String createCliente(@Valid @ModelAttribute Cliente cliente, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("cliente", cliente);
+            model.addAttribute("titulo", "Nuevo cliente");
+            return "new_cliente";
+        }
+
         cli_controller.newCliente(cliente, clienteService);
         return "redirect:/";
     }
@@ -133,9 +142,10 @@ public class Clientes {
     }
 
     @PostMapping(value = "/leer_excel")
-    public String postMethodName(@RequestParam("inputExcel") Part filePart, HttpServletRequest request, HttpServletResponse response)
+    public String postMethodName(@RequestParam("inputExcel") Part filePart, HttpServletRequest request,
+            HttpServletResponse response)
             throws IOException, ServletException {
-        //Part filePart = request.getPart("inputExcel");
+        // Part filePart = request.getPart("inputExcel");
         cli_controller.readDataFromExcel(filePart, clienteService, request, response);
         return "redirect:/clientes/";
     }

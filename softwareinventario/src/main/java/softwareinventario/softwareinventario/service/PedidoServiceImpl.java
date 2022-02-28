@@ -46,4 +46,9 @@ public class PedidoServiceImpl implements IPedidoService {
         
     }
 
+    @Override
+    public List<Pedido> findByFechaEntrega(Pedido pedido) {
+        return pedidoRepository.findAllByFechaEntrega(pedido.getFecha_entrega());
+    }
+
 }

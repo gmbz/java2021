@@ -17,4 +17,6 @@ public interface IPedidoService {
 
     public void delete(Pedido pedido);
 
+    public  List<Pedido> findByFechaEntrega(Pedido pedido);
+
 }

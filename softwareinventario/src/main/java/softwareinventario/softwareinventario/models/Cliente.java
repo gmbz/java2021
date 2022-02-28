@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "clientes")
@@ -21,14 +23,20 @@ public class Cliente {
     @Column(name = "id_cliente")
     private int id_cliente;
     @Column(name = "nombre")
+    @NotEmpty
     private String nombre;
     @Column(name = "apellido")
+    @NotEmpty
     private String apellido;
     @Column(name = "email")
+    @Email
+    @NotEmpty
     private String email;
     @Column(name = "telefono")
+    @NotEmpty
     private String tel;
     @Column(name = "direccion")
+    @NotEmpty
     private String direccion;
     @OneToMany(mappedBy = "cliente", cascade = { CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH })
