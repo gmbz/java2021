@@ -13,37 +13,38 @@
           method="POST"
           class="col-8"
         >
-          <div class="form-group">
-            <input
-              type="hidden"
-              class="form-control"
-              th:field="*{id_cliente}"
-              th:placeholder="${cliente.getId_cliente}"
-              th:value="${cliente.getId_cliente}"
-            />
+          <input
+            type="hidden"
+            class="form-control"
+            th:field="*{id_cliente}"
+            th:placeholder="${cliente.getId_cliente}"
+            th:value="${cliente.getId_cliente}"
+          />
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="inputNombre">Nuevo nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputNombre"
+                th:field="*{nombre}"
+                th:placeholder="${cliente.getNombre}"
+                th:value="${cliente.getNombre}"
+              />
+            </div>
+            <div class="form-group col">
+              <label for="inputApellido">Nuevo apellido</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputApellido"
+                th:field="*{apellido}"
+                th:placeholder="${cliente.getApellido}"
+                th:value="${cliente.getApellido}"
+              />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="inputNombre">Nuevo nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputNombre"
-              th:field="*{nombre}"
-              th:placeholder="${cliente.getNombre}"
-              th:value="${cliente.getNombre}"
-            />
-          </div>
-          <div class="form-group">
-            <label for="inputApellido">Nuevo apellido</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputApellido"
-              th:field="*{apellido}"
-              th:placeholder="${cliente.getApellido}"
-              th:value="${cliente.getApellido}"
-            />
-          </div>
+
           <div class="form-group">
             <label for="inputDireccion">Nueva direccion</label>
             <input
@@ -78,7 +79,7 @@
             />
           </div>
           <div class="d-flex justify-content-center mt-3">
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-dark">Actualizar</button>
           </div>
         </form>
       </div>

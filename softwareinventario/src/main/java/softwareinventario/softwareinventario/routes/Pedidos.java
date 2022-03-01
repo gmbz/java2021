@@ -114,6 +114,7 @@ public class Pedidos {
         Pedido pedido = new Pedido();
         pedido.setNro_pedido(nro_pedido);
         Pedido new_pedido = ped_controller.getById(pedido, pedidoService);
+        ped_controller.calculaImporte(new_pedido);
         model.addAttribute("pedido", new_pedido);
         return "pedido_ultimo_paso";
     }

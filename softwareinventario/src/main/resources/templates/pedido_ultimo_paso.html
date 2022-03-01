@@ -5,60 +5,92 @@
     <header th:replace="layout :: header"></header>
 
     <div class="container pt-4">
-      <h2>Detalle</h2>
-      <p>Pedido Nº: <span th:text="${pedido.getNro_pedido}"></span></p>
-      <p>Fecha: <span th:text="${pedido.getFecha}"></span></p>
-      <p>
-        Cliente:
-        <span
-          th:text="${pedido.getCliente().getNombre} + ' ' + ${pedido.getCliente().getApellido}"
-        ></span>
-      </p>
-      <p>
-        Direccion: <span th:text="${pedido.getCliente().getDireccion}"></span>
-      </p>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Precio Neto</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="item_pedido : ${pedido.getDetalle().getItems_pedidos}">
-            <td th:text="${item_pedido.getProducto().getDescrip}"></td>
-            <td th:text="${item_pedido.getCantidad}"></td>
-            <td th:text="${item_pedido.getProducto().getPrecio}"></td>
-            <td th:text="${item_pedido.getSubtotal}"></td>
-          </tr>
-          <tr class="table-secondary">
-            <th scope="row" colspan="3">Subtotal</th>
-            <td th:text="${pedido.getDetalle().getImporte}"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <form th:action="@{/pedidos/create}" method="POST">
-      <label for="inputFechaEntrega">Fecha Entrega</label>
-      <input
-        type="date"
-        name="fechaEntrega"
-        id="inputFechaEntrega"
-        class="form-control"
-        placeholder="Ingresar fecha de entrega"
-      />
-      <input
-        type="hidden"
-        name="nroPedido"
-        th:value="${pedido.getNro_pedido}"
-      />
-      <div class="d-flex justify-content-center mt-3">
-        <button type="submit" class="btn btn-primary">Crear Pedido</button>
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h3 class="text-center">
+            Pedido Nº: <span th:text="${pedido.getNro_pedido}"></span>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <h5>
+                    Cliente:
+                    <span
+                      th:text="${pedido.getCliente().getNombre} + ' ' + ${pedido.getCliente().getApellido}"
+                    ></span>
+                  </h5>
+                </li>
+                <li class="list-group-item">
+                  <h5>
+                    Dirección:
+                    <span th:text="${pedido.getCliente().getDireccion}"></span>
+                  </h5>
+                </li>
+                <li class="list-group-item">
+                  <h4 class="text-center">Detalle</h4>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Precio Neto</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        th:each="item_pedido : ${pedido.getDetalle().getItems_pedidos}"
+                      >
+                        <td
+                          th:text="${item_pedido.getProducto().getDescrip}"
+                        ></td>
+                        <td th:text="${item_pedido.getCantidad}"></td>
+                        <td
+                          th:text="${item_pedido.getProducto().getPrecio}"
+                        ></td>
+                        <td th:text="${item_pedido.getSubtotal}"></td>
+                      </tr>
+                      <tr class="table-info">
+                        <th scope="row" colspan="3">Subtotal</th>
+                        <td th:text="${pedido.getDetalle().getImporte}"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
+      <div class="card shadow-sm mt-3">
+        <div class="card-header">
+          <h3 class="text-center">Fecha de entrega</h3>
+        </div>
+        <div class="card-body">
+          <form th:action="@{/pedidos/create}" method="POST">
+            <label for="inputFechaEntrega">Fecha Entrega</label>
+            <input
+              type="date"
+              name="fechaEntrega"
+              id="inputFechaEntrega"
+              class="form-control"
+              placeholder="Ingresar fecha de entrega"
+            />
+            <input
+              type="hidden"
+              name="nroPedido"
+              th:value="${pedido.getNro_pedido}"
+            />
+            <div class="d-flex justify-content-center mt-3">
+              <button type="submit" class="btn btn-dark">Crear Pedido</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <div th:replace="layout :: scripts"></div>
   </body>

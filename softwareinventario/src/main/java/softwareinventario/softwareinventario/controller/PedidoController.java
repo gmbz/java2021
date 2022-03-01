@@ -81,6 +81,7 @@ public class PedidoController {
             Pedido updated_pedido = pedidoService.findById(pedido);
             ip.setPedido_detalle(updated_pedido.getDetalle());
             updated_pedido.getDetalle().addItemPedido(ip);
+            calculaImporte(updated_pedido);
             return pedidoService.save(updated_pedido);
         }
         return null;
@@ -90,7 +91,7 @@ public class PedidoController {
     // return db_ped.getItemsPedidos(pd);
     // }
 
-    private void calculaImporte(Pedido pedido) {
+    public void calculaImporte(Pedido pedido) {
         double importe = 0;
         for (ItemPedido ip : pedido.getDetalle().getItems_pedidos()) {
             importe += ip.getSubtotal();

@@ -6,7 +6,9 @@
 
     <div class="container">
       <div class="d-flex flex-row pt-2 justify-content-between">
-        <h2 class="d-inline-flex align-middle flex-column">Listado de Clientes</h2>
+        <h2 class="d-inline-flex align-middle flex-column">
+          Listado de Clientes
+        </h2>
 
         <div class="d-inline-flex flex-column">
           <a
@@ -46,44 +48,45 @@
           </form>
         </div>
       </div>
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telefono</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="cliente : ${clientes}">
-            <th scope="row" th:text="${cliente.getId_cliente}"></th>
-            <td th:text="${cliente.getNombre}"></td>
-            <td th:text="${cliente.getApellido}"></td>
-            <td th:text="${cliente.getDireccion}"></td>
-            <td th:text="${cliente.getEmail}"></td>
-            <td th:text="${cliente.getTel}"></td>
-            <td>
-              <a
-                class="btn btn-primary btn-sm"
-                th:href="@{/clientes/update/{id}(id=${cliente.getId_cliente})}"
-                role="button"
-                >Editar</a
-              >
-              <a
-                class="btn btn-danger btn-sm"
-                th:href="@{/clientes/delete/{id}(id=${cliente.getId_cliente})}"
-                role="button"
-                >Eliminar</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="card shadow-sm">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telefono</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="cliente : ${clientes}">
+              <th scope="row" th:text="${cliente.getId_cliente}"></th>
+              <td th:text="${cliente.getNombre}"></td>
+              <td th:text="${cliente.getApellido}"></td>
+              <td th:text="${cliente.getDireccion}"></td>
+              <td th:text="${cliente.getEmail}"></td>
+              <td th:text="${cliente.getTel}"></td>
+              <td>
+                <a
+                  class="btn btn-warning btn-sm"
+                  th:href="@{/clientes/update/{id}(id=${cliente.getId_cliente})}"
+                  role="button"
+                  >Editar</a
+                >
+                <a
+                  class="btn btn-danger btn-sm"
+                  th:href="@{/clientes/delete/{id}(id=${cliente.getId_cliente})}"
+                  role="button"
+                  >Eliminar</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div th:replace="layout :: scripts"></div>

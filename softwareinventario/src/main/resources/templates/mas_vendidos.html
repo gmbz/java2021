@@ -6,29 +6,31 @@
 
     <div class="container">
       <h2>Productos mas vendidos</h2>
-      <table class="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Cantidad vendidos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="producto : ${productos}">
-            <th
-              scope="row"
-              class="align-middle"
-              th:text="${producto.getId}"
-            ></th>
-            <td class="align-middle" th:text="${producto.getDescrip}"></td>
-            <td
-              class="align-middle"
-              th:text="${producto.getTotalVendidos}"
-            ></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="card shadow-sm">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad vendidos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="producto : ${productos}">
+              <th
+                scope="row"
+                class="align-middle"
+                th:text="${producto.getId}"
+              ></th>
+              <td class="align-middle" th:text="${producto.getDescrip}"></td>
+              <td
+                class="align-middle"
+                th:text="${producto.getTotalVendidos}"
+              ></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <head th:replace="layout :: scripts"> </head>
