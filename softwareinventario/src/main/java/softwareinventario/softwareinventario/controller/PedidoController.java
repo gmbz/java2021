@@ -69,6 +69,19 @@ public class PedidoController {
     // db_ped.createDetalle(pd);
     // }
 
+    /**
+     * Funcion que recibe el producto pedido y el pedido que se está utilizando.
+     * Le pide a la capa de datos que busque el producto, valida que la cantidad
+     * pedida por el cliente no supere el stock y actualiza el pedido añadiendo el
+     * producto. Luego calcula el importe actual.
+     * Si la cantidad supera el stock disponible devuelve null.
+     * 
+     * @param ip
+     * @param pedido
+     * @param productoService
+     * @param pedidoService
+     * @return
+     */
     public Pedido addProduct(ItemPedido ip, Pedido pedido, IProductoService productoService,
             IPedidoService pedidoService) {
         Producto prod = new Producto();

@@ -42,6 +42,7 @@ public class Clientes {
     public String listarCategorias(Model model) {
         List<Cliente> clientes = cli_controller.listarClientes(clienteService);
         model.addAttribute("clientes", clientes);
+        model.addAttribute("titulo", "Listado de clientes");
         return "show_clientes";
     }
 

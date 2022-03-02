@@ -42,6 +42,7 @@ public class Categorias {
     public String listarCategorias(Model model) {
         List<Categoria> categorias = cat_controller.listarCategorias(categoriaService);
         model.addAttribute("categorias", categorias);
+        model.addAttribute("titulo", "Listado de categorias");
         return "show_categorias";
 
     }

@@ -42,6 +42,7 @@ public class Proveedores {
     public String listarProveedores(Model model) {
         List<Proveedor> proveedores = prov_controller.listarProveedores(proveedorService);
         model.addAttribute("proveedores", proveedores);
+        model.addAttribute("titulo", "Listado de proveedores");
         return "show_proveedores";
     }
 

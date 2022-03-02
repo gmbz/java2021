@@ -56,6 +56,7 @@ public class Productos {
     public String listarProductos(Model model) {
         List<Producto> productos = prod_controller.listaProductos(productoService);
         model.addAttribute("productos", productos);
+        model.addAttribute("titulo", "Listado de productos");
         return "show_productos";
     }
 

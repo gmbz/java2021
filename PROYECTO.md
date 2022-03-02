@@ -9,7 +9,13 @@ La  aplicación será desarrollada con Java 16 con Spring y MySQL.
 
 ![modelo-de-dominio](docs/modelo-de-dominio.png)
 
+## DIAGRAMA ENTIDAD-RELACION
+
+![diagrama-entidad-relacion](docs/diagrama-entidad-relacion.png)
+
 ## BOSQUEJO DE ARQUITECTURA
+
+![bosquejo-de-arquitectura](docs/bosquejo-de-arquitectura.png)
 
 ## REGLAS DE NEGOCIO
 
@@ -19,26 +25,38 @@ La  aplicación será desarrollada con Java 16 con Spring y MySQL.
 |  02   | Los usuarios pueden ser Administrador, Vendedor, Depósito(?), Transportista |
 |  03   | Cada producto debe estar en una categoria                                   |
 |  04   | Cada producto pertenece a un proveedor                                      |
+|  05   | Cada vendedor pertenece a una zona y puede vender solo en dicha zona        |
+|  06   | Cada vendedor debe vender como mínimo X unidades de dinero                  |
+|  07   | Cada vendedor es supervisado por un administrador                           |
+|  08   | Un cliente pertence a una zona                                              |
+|  09   | Los productos deben tener un Punto de Pedido                                |
+|  10   | Una caja se abre y se cierra en el mismo día                                |
 
 ## REQUERIMIENTOS
 
 ### FUNCIONALES
 
-|  REQ  | Descripción                               | Implementado |
-| :---: | :---------------------------------------- | :----------: |
-|  01   | Crud productos                            |      ✓       |
-|  02   | Crud proveedores                          |      ✓       |
-|  03   | Crud categorias                           |      ✓       |
-|  05   | Generar pedidos                           |      ✓       |
-|  04   | Crud clientes                             |      ✓       |
-|  06   | Añadir productos a un pedido              |      ✓       |
-|  07   | Mostrar listado de productos mas vendidos |      ✓       |
-|  08   | Mostrar listado de mejores clientes       |      ✗       |
-|  09   | Mostrar detalle de un pedido              |      ✓       |
-|  10   | Mostrar pedidos de un cliente             |      ✓       |
-|  11   | Crud de usuarios                          |      ✗       |
-|  12   | Asignar roles a usuarios                  |      ✗       |
-|  12   | Gestionar ingresos de productos           |      ✗       |
+|  REQ  | Descripción                                      | Implementado |
+| :---: | :----------------------------------------------- | :----------: |
+|  01   | Crud productos                                   |      ✓       |
+|  02   | Crud proveedores                                 |      ✓       |
+|  03   | Crud categorias                                  |      ✓       |
+|  05   | Generar pedidos                                  |      ✓       |
+|  04   | Crud clientes                                    |      ✓       |
+|  06   | Añadir productos a un pedido                     |      ✓       |
+|  07   | Mostrar listado de productos mas vendidos        |      ✓       |
+|  08   | Mostrar listado de mejores clientes              |      ✗       |
+|  09   | Mostrar detalle de un pedido                     |      ✓       |
+|  10   | Mostrar pedidos de un cliente                    |      ✓       |
+|  11   | Crud de usuarios                                 |      ✗       |
+|  12   | Asignar roles a usuarios                         |      ✗       |
+|  13   | Gestionar ingresos de productos                  |      ✓       |
+|  14   | Crear y gestionar caja                           |      ✗       |
+|  15   | Actualizar estado de pedido                      |      ✓       |
+|  16   | Consultar detalle de pedido                      |      ✓       |
+|  17   | Listado de pedidos filtrado por cliente          |      ✓       |
+|  18   | Listado de pedidos filtrado por fecha de entrega |      ✓       |
+|  19   | Gestionar compra de productos                    |      ✗       |
 
 
 
